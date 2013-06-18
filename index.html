@@ -24,9 +24,6 @@ div {
   background-image: -webkit-linear-gradient(top, rgba(208,208,208,0.95), rgba(144,144,144,0.95));
   font-size: 20px;
 }
-#top * {
-  opacity: 1;
-}
 .fill {
   position: absolute;
   top: 0;
@@ -39,60 +36,21 @@ div {
   display: -webkit-flex;
   -webkit-flex-direction: row;
 }
-.row>* {
+.row * {
   -webkit-flex: 1;
-}
-#menu {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  vertical-align: middle;
-  font-size: 20px;
-}
-#menu img {
-  vertical-align: bottom;
 }
 a {
   color: #fff;
   text-decoration: none;
   text-shadow: 0 0 20px #000;
 }
-#top a {
-  text-shadow: 0 0 65px #000;
-}
-.col {
-  height: 100%;
-}
-.col,
-.panel {
-  display: -webkit-flex;
-  -webkit-flex-direction: column;
-}
-.col li {
-  display: -webkit-flex;
-  -webkit-flex: 1;
-}
-.panel,
-#around .col {
-  vertical-align: middle;
-}
-.panel li,
-#around .col li {
-  display: -webkit-flex;
-  -webkit-flex: 1;
-  -webkit-align-items: center;
-  -webkit-justify-content: center;
-  text-align: center;
-}
 #biglogo {
-  display: inline-block;
-  vertical-align: middle;
-  width: 30%;
-}
-#biglogo>img {
   height: 430px;
   width: 430px;
+  margin: auto;
+  float: right;
+  position: relative;
+  top: calc(100% - 430px);
 }
 .section {
   height: 100%;
@@ -152,6 +110,6 @@ jQuery(function($) {
     }
     $('img.2x').attr('src', fetch2xImage);
   }
-});</script></head><body></body><div id="about" class="section"><div class="content">Heptarex is <a href="#bigdata">big data analysis</a>, <a href="#mobile">mobile app development</a>, and <a href="#web">front-end design consulting</a> by Kevin Finn.</div></div><div id="bigdata" class="section"><div class="content">Brotapes recommends new music based on listening habits of you and your
+});</script></head><body></body><div id="top"><ul class="row"><li><a href="#top"> <img src="menu_logo.png" class="2x">Heptarex</a></li><li><a href="#bigdata">Big Data</a></li><li><a href="#mobile">Mobile</a></li><li><a href="#web">Web</a></li><li><a href="#around">Around</a></li><li><a href="#contact">Contact</a></li></ul></div><div id="about" class="section"><div class="content">Heptarex is <a href="#bigdata">big data analysis</a>, <a href="#mobile">mobile app development</a>, and <a href="#web">front-end design consulting</a> by Kevin Finn.</div></div><div id="bigdata" class="section"><div class="content">Brotapes recommends new music based on listening habits of you and your
 friends. Currently under development.</div></div><div id="mobile" class="section"><div class="content">MoBro automatically adds mustaches to faces in real-time on iOS. App
-store pending.</div></div><div id="web" class="section"><div class="content">French Horn Rebellion is a Brooklyn band with a <a href="//frenchhornrebellion.com">site built by Heptarex</a>.</div></div><div id="around" class="section"><div class="content"><p>Follow <a href="//twitter.com/heptarex">@Heptarex</a> or <a href="//heptarex.tumblr.com">heptarex.tumblr.com</a>.</p><p>Follow <a href="//twitter.com/superkevin">@superkevin</a>, friend <a href="//facebook.com/kevinhfinn">Kevin Finn on Facebook</a>, or connect with <a href="//www.linkedin.com/pub/kevin-finn/3b/411/ba5">Kevin Finn on LinkedIn</a>.</p></div></div><div id="contact" class="section"><div class="content">Want to chat?<a href="mailto:inquiries@heptarex.com">inquiries@heptarex.com</a></div></div></html>
+store pending.</div></div><div id="web" class="section"><div class="content">French Horn Rebellion is a Brooklyn band with a <a href="//frenchhornrebellion.com">site built by Heptarex</a>.</div></div><div id="around" class="section"><div class="content"><p>Follow <a href="//twitter.com/heptarex">@Heptarex</a> or <a href="//heptarex.tumblr.com">heptarex.tumblr.com</a>.</p><p>Follow <a href="//twitter.com/superkevin">@superkevin</a>, friend <a href="//facebook.com/kevinhfinn">Kevin Finn on Facebook</a>, or connect with <a href="//www.linkedin.com/pub/kevin-finn/3b/411/ba5">Kevin Finn on LinkedIn</a>.</p></div></div><div id="contact" class="section"><img id="biglogo" src="logo.png" class="2x"><div class="content">Want to chat?<a href="mailto:inquiries@heptarex.com">inquiries@heptarex.com</a></div></div></html>
