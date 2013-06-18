@@ -114,7 +114,7 @@ jQuery(function($) {
   $('a.scroll').on('click', function() {
     var matched = this.href.match(/#.+/);
     if (matched) {
-      $.scrollTo($(matched[0]), {duration: 200, easing: 'swing'});
+      $.scrollTo($(matched[0]), {duration: 400, easing: 'swing'});
       return false;
     }
     return true;
