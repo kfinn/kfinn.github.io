@@ -37,12 +37,14 @@
   </body>
   <script type="text/javascript">
     var castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
-    castReceiverManager.start();
+    
     var messageBus = castReceiverManager.getCastMessageBus('urn:x-cast:com.heptarex.gifwall');
-    customMessageBus.onMessage = function(event) {
+    messageBus.onMessage = function(event) {
       console.log(event.data);
       update();
     }
+
+    castReceiverManager.start();
 
     function update() {
       var gifParent = $('body');
