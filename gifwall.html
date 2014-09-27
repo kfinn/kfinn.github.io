@@ -7,11 +7,11 @@
       width: 100%;
       padding: 0;
       margin: 0;
-      overflow: hidden;
+      /*overflow: hidden;*/
     }
 
     .item {
-      width: 200px;
+      width: 600px;
     }
 
     </style>
@@ -28,29 +28,38 @@
       src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.1.5/masonry.pkgd.min.js">
     </script>
     <script type="text/html" id="gif">
-      <video autoplay loop class="item" width="<%=width%>" height="<%=height%>" style="height:<%=height%>">
+      <video autoplay loop class="item" width="600" height="<%=height * 3%>" style="height:<%=height * 3%>">
         <source src="<%=mp4%>" type="video/mp4">
       </video>
     </script>
-    <meta name="viewport" width="600">
   </head>
   <body>
   </body>
   <script type="text/javascript">
-    var gifParent = $('body');
-    var gifTemplate = _.template($('#gif').html());
-    $.ajax('//api.giphy.com/v1/gifs/trending?limit=75&api_key=dc6zaTOxFJmzC')
-    .done(function(result) {
-      var data = result.data;
-      var gifElements = _.map(data, function(imageData) {
-        return gifTemplate(imageData.images.fixed_width);
+    var castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+    castReceiverManager.start();
+    var messageBus = castReceiverManager.getCastMessageBus('urn:x-cast:com.heptarex.gifwall');
+    customMessageBus.onMessage = function(event) {
+      console.log(event.data);
+      update();
+    }
+
+    function update() {
+      var gifParent = $('body');
+      var gifTemplate = _.template($('#gif').html());
+      $.ajax('//api.giphy.com/v1/gifs/search?q=trippy&limit=8&api_key=dc6zaTOxFJmzC')
+      .done(function(result) {
+        var data = result.data;
+        var gifElements = _.map(data, function(imageData) {
+          return gifTemplate(imageData.images.fixed_width);
+        });
+        gifParent.empty();
+        gifParent.append(gifElements);
+        gifParent.masonry({
+          columnWidth: 200,
+          itemSelector: ".item"
+        }).masonry('addItems', gifElements);
       });
-      gifParent.empty();
-      gifParent.append(gifElements);
-      gifParent.masonry({
-        columnWidth: 200,
-        itemSelector: ".item"
-      }).masonry('addItems', gifElements);
-    });
+    };
   </script>
 </html>

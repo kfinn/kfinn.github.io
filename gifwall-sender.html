@@ -4,9 +4,17 @@
   <script type="text/javascript"
     src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js">
   </script>
+  <script type="text/javascript"
+    src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js">
+  </script>
+  <style type="text/css">
+  #hitit {
+    display: none;
+  }
+  </style>
 </head>
 <body>
-  Hit it!
+  <a href="#hitit" id="hitit">Hit it!</a>
 </body>
 <script type="text/javascript">
 var applicationID = '9E22F9B6';
@@ -19,6 +27,9 @@ window['__onGCastApiAvailable'] = function(loaded, errorInfo) {
   }
 }
 
+var castButton = $('#hitit');
+castButton.
+
 function initializeCastApi() {
   var sessionRequest = new chrome.cast.SessionRequest(applicationID);
   var apiConfig = new chrome.cast.ApiConfig(sessionRequest,
@@ -29,13 +40,39 @@ function initializeCastApi() {
 
 function receiverListener(e) {
   if( e === chrome.cast.ReceiverAvailability.AVAILABLE) {
+    castButton.slideDown();
   }
 }
 
+function onInitSuccess() {
+  console.log('onInitSuccess');
+  console.log(arguments);
+}
+
+function onError() {
+  console.log('onError');
+  console.log(arguments);
+}
 
 function sessionListener(e) {
-
+  console.log('sessionListener');
+  console.log(arguments);
 }
+
+castButton.click(function() {
+  chrome.cast.requestSession(onRequestSessionSuccess, onLaunchError);
+});
+
+var session;
+function onRequestSessionSuccess(e) {
+  session = e;
+  console.log(arguments);
+}
+
+function onLaunchError() {
+  console.log(arguments);
+}
+
 
 </script>
 </html>
