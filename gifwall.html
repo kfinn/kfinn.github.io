@@ -28,24 +28,21 @@
       src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.1.5/masonry.pkgd.min.js">
     </script>
     <script type="text/html" id="gif">
-      <img class="item" src="<%=url%>" style="height:<%(height * 3)%>px;">
+      <img class="item" src="<%=url%>" height="<%(height * 3)%>" style="height:<%(height * 3)%>px;">
     </script>
-    <!-- <video loop class="item" width="600" height="<%=height * 3%>" style="height:<%=height * 3%>">
-      <source src="<%=mp4%>" type="video/mp4">
-    </video> -->
   </head>
   <body>
   </body>
   <script type="text/javascript">
-    // var castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
-    //
-    // var messageBus = castReceiverManager.getCastMessageBus('urn:x-cast:com.heptarex.gifwall');
-    // messageBus.onMessage = function(event) {
-    //   console.log(event.data);
-    //   update();
-    // }
-    //
-    // castReceiverManager.start();
+    var castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+
+    var messageBus = castReceiverManager.getCastMessageBus('urn:x-cast:com.heptarex.gifwall');
+    messageBus.onMessage = function(event) {
+      console.log(event.data);
+      update();
+    }
+
+    castReceiverManager.start();
 
     update();
     function update() {
