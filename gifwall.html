@@ -28,7 +28,7 @@
       src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.1.5/masonry.pkgd.min.js">
     </script>
     <script type="text/html" id="gif">
-      <video autoplay loop class="item" width="600" height="<%=height * 3%>" style="height:<%=height * 3%>">
+      <video loop class="item" width="600" height="<%=height * 3%>" style="height:<%=height * 3%>">
         <source src="<%=mp4%>" type="video/mp4">
       </video>
     </script>
@@ -36,15 +36,15 @@
   <body>
   </body>
   <script type="text/javascript">
-    var castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
-
-    var messageBus = castReceiverManager.getCastMessageBus('urn:x-cast:com.heptarex.gifwall');
-    messageBus.onMessage = function(event) {
-      console.log(event.data);
-      update();
-    }
-
-    castReceiverManager.start();
+    // var castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+    //
+    // var messageBus = castReceiverManager.getCastMessageBus('urn:x-cast:com.heptarex.gifwall');
+    // messageBus.onMessage = function(event) {
+    //   console.log(event.data);
+    //   update();
+    // }
+    //
+    // castReceiverManager.start();
 
     update();
     function update() {
@@ -54,7 +54,12 @@
       .done(function(result) {
         var data = result.data;
         var gifElements = _.map(data, function(imageData) {
-          return gifTemplate(imageData.images.fixed_width);
+          var gifElement = $(gifTemplate(imageData.images.fixed_width));
+          gifElement.on('canplaythrough', function() {
+            gifElement.trigger('play');
+          });
+          gifElement.trigger('load');
+          return gifElement;
         });
         gifParent.empty();
         gifParent.append(gifElements);
