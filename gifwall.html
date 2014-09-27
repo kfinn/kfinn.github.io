@@ -11,7 +11,8 @@
     }
 
     .item {
-      width: 600px;
+      margin: 0;
+      padding: 0;
     }
 
     </style>
@@ -24,11 +25,8 @@
     <script type="text/javascript"
       src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js">
     </script>
-    <script type="text/javascript"
-      src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.1.5/masonry.pkgd.min.js">
-    </script>
     <script type="text/html" id="gif">
-      <img class="item" src="<%=url%>" height="<%(height * 3)%>" style="height:<%(height * 3)%>px;">
+      <img class="item" src="<%=url%>" style="height:<%(height * 2)%>px; width:<%=(width * 2)%>px;">
     </script>
   </head>
   <body>
@@ -52,7 +50,7 @@
       .done(function(result) {
         var data = result.data;
         var gifElements = _.map(data, function(imageData) {
-          var gifElement = $(gifTemplate(imageData.images.fixed_width));
+          var gifElement = $(gifTemplate(imageData.images.fixed_height));
           gifElement.on('canplaythrough', function() {
             gifElement.trigger('play');
           });
@@ -61,10 +59,6 @@
         });
         gifParent.empty();
         gifParent.append(gifElements);
-        gifParent.masonry({
-          columnWidth: 200,
-          itemSelector: ".item"
-        }).masonry('addItems', gifElements);
       });
     };
   </script>
