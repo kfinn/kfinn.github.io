@@ -47,7 +47,7 @@
     function update() {
       var gifParent = $('body');
       var gifTemplate = _.template($('#gif').html());
-      $.ajax('//api.giphy.com/v1/gifs/search?q=trippy&limit=7&api_key=dc6zaTOxFJmzC')
+      $.ajax('//api.giphy.com/v1/gifs/search?q=random&limit=7&api_key=dc6zaTOxFJmzC')
       .done(function(result) {
         var data = result.data;
         var gifElements = _.map(data, function(imageData) {
