@@ -1,0 +1,19 @@
+<html>
+  <head>
+<script type="text/javascript"
+  src="//www.gstatic.com/cast/sdk/libs/receiver/2.0.0/cast_receiver.js">
+</script>
+<body>
+  Hello, world!
+</body>
+<script type="text/javascript">
+  var castReceiverManager = cast.receiver.CastReceiverManager.getInstance();
+
+  var messageBus = castReceiverManager.getCastMessageBus('urn:x-cast:com.heptarex.soundcast');
+  messageBus.onMessage = function(event) {
+    console.log(event.data);
+    update();
+  }
+
+  castReceiverManager.start();
+</html>
